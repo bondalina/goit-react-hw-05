@@ -1,17 +1,18 @@
 import { useState, useEffect, useMemo } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useParams } from "react-router-dom";
+
 import { searchMovie } from "../movies-api";
 import MovieFilter from "../../components/MovieFilter/MovieFilter";
 import MovieList from "../../components/MovieList/MovieList";
 
 const MoviesPage = () => {
+  const { movieId } = useParams();
   const [movies, setMovies] = useState([]);
   const [loading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
 
   const [searchParams, setSearchParams] = useSearchParams();
   const queryParam = searchParams.get("query") ?? "";
-  // console.log(searchParams);
 
   const changeQueryFilter = (newFilter) => {
     searchParams.set("query", newFilter);
@@ -22,7 +23,7 @@ const MoviesPage = () => {
     async function fetchMovies() {
       try {
         setIsLoading(true);
-        const data = await searchMovie();
+        const data = await searchMovie(queryParam);
         setMovies(data);
       } catch (error) {
         setError(true);
@@ -30,20 +31,16 @@ const MoviesPage = () => {
         setIsLoading(false);
       }
     }
-    fetchMovies();
-  }, []);
 
-  const filteredMovies = useMemo(() => {
-    return movies.filter((movie) =>
-      movie.original_title.toLowerCase().includes(queryParam.toLowerCase())
-    );
-  }, [queryParam, movies]);
+    fetchMovies();
+  }, [queryParam]);
+
   return (
     <div>
       <MovieFilter value={queryParam} onFilter={changeQueryFilter} />
       {error && <b>Oops! Please reload page!</b>}
-      {loading && <b>Loading payments...</b>}
-      {filteredMovies.length > 0 && <MovieList movies={filteredMovies} />}
+      {loading && <b>Loading movies...</b>}
+      {movies.length > 0 && <MovieList movies={movies} />}
     </div>
   );
 };

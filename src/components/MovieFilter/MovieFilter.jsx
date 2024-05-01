@@ -1,13 +1,27 @@
+import { useState } from "react";
+
 const MovieFilter = ({ value, onFilter }) => {
+  const [inputValue, setInputValue] = useState(value);
+
+  const handleChange = (e) => {
+    setInputValue(e.target.value);
+  };
+
+  const handleClick = () => {
+    onFilter(inputValue);
+  };
+
   return (
     <div>
       <input
         name="query"
         type="text"
-        value={value}
-        onChange={(e) => onFilter(e.target.value)}
+        value={inputValue}
+        onChange={handleChange}
       />
-      <button type="button">Search</button>
+      <button type="button" onClick={handleClick}>
+        Search
+      </button>
     </div>
   );
 };

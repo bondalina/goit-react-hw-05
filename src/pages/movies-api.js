@@ -18,14 +18,27 @@ export const getMovies = async () => {
 };
 
 // Для пошуку фільма (MoviesPage)
-export const searchMovie = async () => {
+export const searchMovie = async (query) => {
   const response = await axios.get(
     `https://api.themoviedb.org/3/search/movie`,
-    options
+    {
+      ...options,
+      params: {
+        query: query,
+      },
+    }
   );
-  // console.log(response);
+  console.log(response);
   return response.data.results;
 };
+// export const searchMovie = async () => {
+//   const response = await axios.get(
+//     `https://api.themoviedb.org/3/search/movie`,
+//     options
+//   );
+//   console.log(response);
+//   return response.data.results;
+// };
 
 // Для детальної інформації про фільм (MovieDetailsPage)
 export const getMovieById = async (movieId) => {
@@ -50,7 +63,7 @@ export const getCastMovie = async (movieId) => {
 // Для ревью (MovieDetailsPage)
 export const getReviewMovie = async (movieId) => {
   const response = await axios.get(
-    `https://api.themoviedb.org/3/movie/${movieId}`,
+    `https://api.themoviedb.org/3/movie/${movieId}/reviews`,
     options
   );
   // console.log(response);
