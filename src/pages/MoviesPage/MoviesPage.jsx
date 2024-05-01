@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect } from "react";
 import { useSearchParams, useParams } from "react-router-dom";
 
 import { searchMovie } from "../movies-api";

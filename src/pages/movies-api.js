@@ -28,7 +28,7 @@ export const searchMovie = async (query) => {
       },
     }
   );
-  console.log(response);
+  // console.log(response);
   return response.data.results;
 };
 // export const searchMovie = async () => {
