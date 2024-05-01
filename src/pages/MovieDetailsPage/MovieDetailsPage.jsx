@@ -28,7 +28,7 @@ const MovieDetailsPage = () => {
     }
     fetchMovies();
   }, [movieId]);
-  // console.log("Movie:", movie);
+  // console.log("Movie:", movieId);
   return (
     <div>
       <div>

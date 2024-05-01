@@ -33,8 +33,8 @@ export const getMovieById = async (movieId) => {
     `https://api.themoviedb.org/3/movie/${movieId}`,
     options
   );
-  // console.log(response);
-  return response.data.results;
+  console.log(response);
+  return response.data;
 };
 
 // Для інформації про акторський склад (MovieDetailsPage)
