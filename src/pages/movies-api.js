@@ -33,7 +33,7 @@ export const getMovieById = async (movieId) => {
     `https://api.themoviedb.org/3/movie/${movieId}`,
     options
   );
-  console.log(response);
+  // console.log(response);
   return response.data;
 };
 
@@ -44,15 +44,15 @@ export const getCastMovie = async (movieId) => {
     options
   );
   // console.log(response);
-  return response.data.results;
+  return response.data;
 };
 
 // Для ревью (MovieDetailsPage)
 export const getReviewMovie = async (movieId) => {
   const response = await axios.get(
-    `https://api.themoviedb.org/3/movie/${movieId}/reviews`,
+    `https://api.themoviedb.org/3/movie/${movieId}`,
     options
   );
   // console.log(response);
-  return response.data.results;
+  return response.data;
 };
