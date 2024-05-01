@@ -1,7 +1,5 @@
 import axios from "axios";
 
-const url = "https://api.themoviedb.org/3/trending/movie/day?language=en-US";
-
 const options = {
   headers: {
     Authorization:
@@ -9,13 +7,52 @@ const options = {
   },
 };
 
+// Для відображення спску фільмів (HomePage)
 export const getMovies = async () => {
-  const response = await axios.get(url, options);
-  console.log(response);
+  const response = await axios.get(
+    `https://api.themoviedb.org/3/trending/movie/day?language=en-US`,
+    options
+  );
+  // console.log(response);
   return response.data.results;
 };
 
+// Для пошуку фільма (MoviesPage)
+export const searchMovie = async () => {
+  const response = await axios.get(
+    `https://api.themoviedb.org/3/search/movie`,
+    options
+  );
+  // console.log(response);
+  return response.data.results;
+};
+
+// Для детальної інформації про фільм (MovieDetailsPage)
 export const getMovieById = async (movieId) => {
-  const response = await axios.get(`/movie/${movieId}`);
+  const response = await axios.get(
+    `https://api.themoviedb.org/3/movie/${movieId}`,
+    options
+  );
+  // console.log(response);
+  return response.data.results;
+};
+
+// Для інформації про акторський склад (MovieDetailsPage)
+export const getCastMovie = async (movieId) => {
+  const response = await axios.get(
+    `https://api.themoviedb.org/3/movie/${movieId}/credits`,
+    options
+  );
+  // console.log(response);
+  return response.data.results;
+};
+
+// Для ревью (MovieDetailsPage)
+export const getReviewMovie = async (movieId) => {
+  const response = await axios.get(
+    `https://api.themoviedb.org/3/movie/${movieId}/reviews`,
+    options
+  );
+  // console.log(response);
   return response.data.results;
 };

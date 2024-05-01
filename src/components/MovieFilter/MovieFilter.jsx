@@ -7,7 +7,7 @@ const MovieFilter = ({ value, onFilter }) => {
         value={value}
         onChange={(e) => onFilter(e.target.value)}
       />
-      <button>Search</button>
+      <button type="button">Search</button>
     </div>
   );
 };

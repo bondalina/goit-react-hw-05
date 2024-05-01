@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
-import { getMovies } from "../movies-api";
+import { searchMovie } from "../movies-api";
 import MovieFilter from "../../components/MovieFilter/MovieFilter";
 import MovieList from "../../components/MovieList/MovieList";
 
@@ -8,7 +8,6 @@ const MoviesPage = () => {
   const [movies, setMovies] = useState([]);
   const [loading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
-  const [query, setQuery] = useState("");
 
   const [searchParams, setSearchParams] = useSearchParams();
   const queryParam = searchParams.get("query") ?? "";
@@ -20,13 +19,10 @@ const MoviesPage = () => {
   };
 
   useEffect(() => {
-    if (query === "") {
-      return;
-    }
     async function fetchMovies() {
       try {
         setIsLoading(true);
-        const data = await getMovies();
+        const data = await searchMovie();
         setMovies(data);
       } catch (error) {
         setError(true);
@@ -47,7 +43,7 @@ const MoviesPage = () => {
       <MovieFilter value={queryParam} onFilter={changeQueryFilter} />
       {error && <b>Oops! Please reload page!</b>}
       {loading && <b>Loading payments...</b>}
-      {movies.length > 0 && <MovieList movies={filteredMovies} />}
+      {filteredMovies.length > 0 && <MovieList movies={filteredMovies} />}
     </div>
   );
 };

@@ -5,7 +5,7 @@ import MovieCard from "../../components/MovieCard/MovieCard";
 
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
-  const [movie, setMovies] = useState(null);
+  const [movie, setMovie] = useState(null);
   const [loading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
 
@@ -19,7 +19,7 @@ const MovieDetailsPage = () => {
       try {
         setIsLoading(true);
         const data = await getMovieById(movieId);
-        setMovies(data);
+        setMovie(data);
       } catch (error) {
         setError(true);
       } finally {
@@ -28,6 +28,7 @@ const MovieDetailsPage = () => {
     }
     fetchMovies();
   }, [movieId]);
+  // console.log("Movie:", movie);
   return (
     <div>
       <div>
@@ -37,6 +38,7 @@ const MovieDetailsPage = () => {
       {error && <b>Oops! Please reload page!</b>}
       {loading && <b>Page is loading...</b>}
       {movie && <MovieCard movie={movie} />}
+
       <div>
         <p>Additional information</p>
       </div>
