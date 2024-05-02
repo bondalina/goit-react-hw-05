@@ -1,4 +1,5 @@
 import { useState } from "react";
+import css from "./MovieFilter.module.css";
 
 const MovieFilter = ({ value, onFilter }) => {
   const [inputValue, setInputValue] = useState(value);
@@ -12,14 +13,15 @@ const MovieFilter = ({ value, onFilter }) => {
   };
 
   return (
-    <div>
+    <div className={css.filterWrapper}>
       <input
+        className={css.inputSearch}
         name="query"
         type="text"
         value={inputValue}
         onChange={handleChange}
       />
-      <button type="button" onClick={handleClick}>
+      <button className={css.btnSearch} type="button" onClick={handleClick}>
         Search
       </button>
     </div>

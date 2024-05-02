@@ -1,0 +1,22 @@
+.movieCard {
+  display: flex;
+  margin-bottom: 20px;
+}
+.movieTitle {
+  font-size: 24px;
+  font-weight: 500;
+}
+.movieRelease {
+  font-size: 16px;
+  font-weight: 200;
+  margin-bottom: 10px;
+}
+.genresList {
+  margin-right: 10px;
+}
+.movieOverview {
+  max-width: 700px;
+}
+.movieDescription {
+  padding-left: 30px;
+}

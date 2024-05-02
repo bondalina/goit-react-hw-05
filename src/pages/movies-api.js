@@ -31,14 +31,6 @@ export const searchMovie = async (query) => {
   // console.log(response);
   return response.data.results;
 };
-// export const searchMovie = async () => {
-//   const response = await axios.get(
-//     `https://api.themoviedb.org/3/search/movie`,
-//     options
-//   );
-//   console.log(response);
-//   return response.data.results;
-// };
 
 // Для детальної інформації про фільм (MovieDetailsPage)
 export const getMovieById = async (movieId) => {

@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
-import { useSearchParams, useParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 
 import { searchMovie } from "../movies-api";
 import MovieFilter from "../../components/MovieFilter/MovieFilter";
 import MovieList from "../../components/MovieList/MovieList";
 
 const MoviesPage = () => {
-  const { movieId } = useParams();
+  // const { movieId } = useParams();
   const [movies, setMovies] = useState([]);
   const [loading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);

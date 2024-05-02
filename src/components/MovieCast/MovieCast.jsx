@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getCastMovie } from "../../pages/movies-api";
-
+import css from "./MovieCast.module.css";
 const MovieCast = () => {
   const { movieId } = useParams();
   const [cast, setCast] = useState([]);
@@ -33,7 +33,7 @@ const MovieCast = () => {
       {loading && <p>Loading cast...</p>}
       {error && <p>Error loading cast...</p>}
       {cast.length > 0 && (
-        <ul>
+        <ul className={css.castList}>
           {cast.map((actor) => (
             <li key={actor.id}>
               <img
@@ -43,10 +43,10 @@ const MovieCast = () => {
                     : defaultImg
                 }
                 alt={actor.name}
-                width={200}
+                width={140}
               />
-              <p>{actor.name}</p>
-              <p>Character: {actor.character}</p>
+              <p className={css.actorName}>{actor.name}</p>
+              <p className={css.character}>Character: {actor.character}</p>
             </li>
           ))}
         </ul>

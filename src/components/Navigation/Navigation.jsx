@@ -7,7 +7,7 @@ const getNavLinkClass = ({ isActive }) => {
 };
 const Navigation = () => {
   return (
-    <nav>
+    <nav className={css.navList}>
       <NavLink to="/" className={getNavLinkClass}>
         Home
       </NavLink>

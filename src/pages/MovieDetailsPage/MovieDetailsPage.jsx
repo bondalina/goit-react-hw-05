@@ -2,6 +2,7 @@ import { Link, useParams, Outlet, useLocation } from "react-router-dom";
 import { useState, useEffect, useRef, Suspense } from "react";
 import { getMovieById } from "../movies-api";
 import MovieCard from "../../components/MovieCard/MovieCard";
+import css from "./MovieDetailsPage.module.css";
 
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
@@ -10,9 +11,9 @@ const MovieDetailsPage = () => {
   const [error, setError] = useState(false);
 
   const location = useLocation();
-  //   // console.log(location);
+  console.log(location);
   const backLinkURLRef = useRef(location.state?.from ?? "/");
-  //   // console.log(backLinkURLRef);
+  // console.log(backLinkURLRef);
 
   useEffect(() => {
     async function fetchMovies() {
@@ -28,10 +29,10 @@ const MovieDetailsPage = () => {
     }
     fetchMovies();
   }, [movieId]);
-  // console.log("Movie:", movieId);
+
   return (
     <div>
-      <div>
+      <div className={css.btnGoBack}>
         <Link to={backLinkURLRef.current}>Go back</Link>
       </div>
 
@@ -39,14 +40,12 @@ const MovieDetailsPage = () => {
       {loading && <b>Page is loading...</b>}
       {movie && <MovieCard movie={movie} />}
 
-      <div>
-        <p>Additional information</p>
-      </div>
+      <p className={css.infoTitle}>Additional information</p>
       <ul>
-        <li>
+        <li className={css.infoList}>
           <Link to="cast">Cast</Link>
         </li>
-        <li>
+        <li className={css.infoList}>
           <Link to="reviews">Reviews</Link>
         </li>
       </ul>

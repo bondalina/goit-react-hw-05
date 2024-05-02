@@ -1,4 +1,4 @@
-// import css from "./HomePage.module.css"
+import css from "./HomePage.module.css";
 import { useEffect, useState } from "react";
 import { getMovies } from "../movies-api";
 import MovieList from "../../components/MovieList/MovieList";
@@ -25,7 +25,7 @@ const HomePage = () => {
 
   return (
     <div>
-      <h1>Tranding today</h1>
+      <h1 className={css.homePageTitle}>Tranding today</h1>
       {error && <p>Oops! There was a problem, please reload page!</p>}
       {loading && <p>Please wait the page is loading...</p>}
       {movies.length > 0 && <MovieList movies={movies} />}
