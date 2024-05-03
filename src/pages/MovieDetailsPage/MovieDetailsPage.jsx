@@ -11,8 +11,8 @@ const MovieDetailsPage = () => {
   const [error, setError] = useState(false);
 
   const location = useLocation();
-  console.log(location);
-  const backLinkURLRef = useRef(location.state?.from ?? "/");
+  // console.log(location);
+  const backLinkURLRef = useRef(location.state ?? "/");
   // console.log(backLinkURLRef);
 
   useEffect(() => {
